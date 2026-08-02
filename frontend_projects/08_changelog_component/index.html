@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changelog Component</title>
+</head>
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 24px;
+        font-size: 14px;
+    }
+    .changelog-card{
+        margin: 1rem auto;
+        padding: 1rem;
+        border: 1px solid;
+        width: 100%;
+        max-width: 580px;
+        text-align: center;
+        border-radius: 1.5em;
+    }
+    .changelog-header{
+        margin: 1em 0;
+    }
+    .changelog-header h2{
+        line-height: 2;
+        font-size: 36px;
+    }
+    .changelog-header p{
+        color: gray;
+    }
+    .changelog-item{
+        display: grid;
+        grid-template-columns: 30% 5% 65%;
+        align-items: baseline;
+        position: relative;
+        z-index: 1;
+    }
+    .changelog-date{
+        color: gray;
+        text-align: end;
+        padding-right: 1em;
+    }
+    .changelog-title{
+        font-weight: 500;
+        text-align: start;
+        padding-left: 0.5em;
+    }
+    .changelog-dot{
+        width: 1em;
+        height: 1em;
+        border-radius: 50%;
+        background-color: black;
+        justify-self: center;
+        align-self: center;
+    }
+    .changelog-timeline{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+        margin: 5em 0;
+    }
+    .changelog-timeline::before{
+        content: '';
+        position: absolute;
+        top: -40px;
+        bottom: -40px;
+        left: 32.5%;
+        width: 1.5px;
+        background-color: black;
+        transform: translateX(-50%);
+    }
+    .btn-changelog{
+        margin-bottom: 1em;
+        padding: 1em 2em;
+        color: white;
+        background-color: #18181b;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    .btn-changelog:hover{
+        background-color: #27272a;
+    }
+    .btn-changelog:active{
+        transform: scale(0.98);
+    }
+</style>
+
+<body>
+    <div class="changelog-card">
+        <div class="changelog-header">
+            <h2>Changelog</h2>
+            <p>Here's everything we have shipped in the past few days</p>
+        </div>
+        <div class="changelog-timeline">
+            <div class="changelog-item">
+                <span class="changelog-date">September 3, 2024</span>
+                <span class="changelog-dot"></span>
+                <span class="changelog-title">Announcing Projects in Frontend Roadmap</span>
+            </div>
+            <div class="changelog-item">
+                <span class="changelog-date">August 28, 2024</span>
+                <span class="changelog-dot"></span>
+                <span class="changelog-title">Build your learning habits with learing streaks</span>
+            </div>
+            <div class="changelog-item">
+                <span class="changelog-date">August 25, 2024</span>
+                <span class="changelog-dot"></span>
+                <span class="changelog-title">Git and GitHub Roadmap</span>
+            </div>
+            <div class="changelog-item">
+                <span class="changelog-date">August 22, 2024</span>
+                <span class="changelog-dot"></span>
+                <span class="changelog-title">Submit your project solution and get feedback</span>
+            </div>
+            <div class="changelog-item">
+                <span class="changelog-date">August 15, 2024</span>
+                <span class="changelog-dot"></span>
+                <span class="changelog-title">Backend Project Ideas</span>
+            </div>
+            <div class="changelog-item">
+                <span class="changelog-date">August 10, 2024</span>
+                <span class="changelog-dot"></span>
+                <span class="changelog-title">Redis roadmap</span>
+            </div>
+            <div class="changelog-item">
+                <span class="changelog-date">August 1, 2024</span>
+                <span class="changelog-dot"></span>
+                <span class="changelog-title">Changelog page to help you stay in the loop</span>
+            </div>
+        </div>
+        <div class="changelog-footer">
+            <button class="btn-changelog">Visit Complete Changelog</button>
+        </div>
+    </div>
+</body>
+
+</html>
