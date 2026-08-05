@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datepicker UI</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .datepicker-input{
+        display: flex;
+        height: 2em;
+        border: 2px solid;
+    }
+    .datepicker-input input{
+        border: none;
+        padding: 0 0.5em;
+    }
+    .datepicker-input .btn-datepicker{
+        width: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        border-left: 2px solid;
+        padding: 0 0.1em;
+        background-color: inherit;
+    }
+    .datepicker-input .btn-datepicker svg{
+        width: 2em;
+        height: 1.5em;
+    }
+    .datepicker-input .btn-datepicker{
+        cursor: pointer;
+    }
+    .datepicker-wrapper{
+        position: relative;
+        width: fit-content;
+        height: 300px;
+        font-size: 16px;
+    }
+    .datepicker-date-selector-wrapper{
+        border: 2px solid;
+        position: absolute;
+        top: 2.2em;
+        width: 100%;
+    }
+    .datepicker-month-year-wrapper {
+        display: flex;
+        flex-direction: column;
+        /* row-gap: 0.5em; */
+        justify-content: center;
+        align-items: center;
+        padding-top: 0.3em;
+    }
+    .datepicker-month-year-wrapper a{
+        color: #000;
+        text-decoration: none;
+        padding: 0.2em 0.5em;
+    }
+    .datepicker-month-year-wrapper .header{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .datepicker-month-year-wrapper .left-arrow, .datepicker-month-year-wrapper .right-arrow{
+        font-weight: 800;
+        font-size: 1.2em;
+    }
+    .datepicker-month-year-wrapper .days{
+        width: 100%;
+        padding: 0.3em 0;
+        border-bottom: 1px solid;
+    }
+    .days .days-wrapper{
+        display: flex;
+        justify-content: space-around;
+    }
+    .nth-day-container{
+        width: 100%;
+        height: fit-content;
+        display: grid;
+        grid-template-columns: repeat(7,auto);
+        grid-template-rows: repeat(5,auto);
+        text-align: center;
+    }
+    .nth-day-container .nth-day{
+        width: 100%;
+        height: 2em;
+        align-content: center;
+    }
+    .nth-day-container .nth-day:not(.row){
+        border-right: 1px solid;
+    }
+    .nth-day-container .nth-day:not(.column){
+        border-bottom: 1px solid;
+    }
+</style>
+<body>
+    <div class="datepicker-wrapper">
+        <div class="datepicker-input">
+            <input type="text" placeholder=" dd / mm / yyyy ">
+            <button class="btn-datepicker">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M0 0h24v24H0z" fill="none" />
+                    <g fill="none">
+                        <rect width="18" height="15" x="3" y="6" stroke="currentColor" stroke-width="2" rx="2" />
+                        <path fill="currentColor" d="M3 10c0-1.886 0-2.828.586-3.414S5.114 6 7 6h10c1.886 0 2.828 0 3.414.586S21 8.114 21 10z" />
+                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M7 3v3m10-3v3" />
+                        <rect width="4" height="2" x="7" y="12" fill="currentColor" rx=".5" />
+                        <rect width="4" height="2" x="7" y="16" fill="currentColor" rx=".5" />
+                        <rect width="4" height="2" x="13" y="12" fill="currentColor" rx=".5" />
+                        <rect width="4" height="2" x="13" y="16" fill="currentColor" rx=".5" />
+                    </g>
+                </svg>
+            </button>
+        </div>
+        <div class="datepicker-date-selector-wrapper">
+            <div class="datepicker-month-year-wrapper">
+                <div class="header">
+                    <span>
+                        <a href="#" class="left-arrow">&lt;</a>
+                        <a href="#" class="month-year">December 2022</a>
+                        <a href="#" class="left-arrow">&gt;</a>
+                    </span>
+                </div>
+                <div class="days">
+                    <span class="days-wrapper">
+                        <span class="day-1">S</span>
+                        <span class="day-2">M</span>
+                        <span class="day-3">T</span>
+                        <span class="day-4">W</span>
+                        <span class="day-5">T</span>
+                        <span class="day-6">F</span>
+                        <span class="day-7">S</span>
+                    </span>
+                </div>
+                <div class="nth-day-container">
+                    <div class="nth-day">1</div>
+                    <div class="nth-day">2</div>
+                    <div class="nth-day">3</div>
+                    <div class="nth-day">4</div>
+                    <div class="nth-day">5</div>
+                    <div class="nth-day">6</div>
+                    <div class="nth-day row">7</div>
+                    <div class="nth-day">8</div>
+                    <div class="nth-day">9</div>
+                    <div class="nth-day">10</div>
+                    <div class="nth-day">11</div>
+                    <div class="nth-day">12</div>
+                    <div class="nth-day">13</div>
+                    <div class="nth-day row">14</div>
+                    <div class="nth-day">15</div>
+                    <div class="nth-day">16</div>
+                    <div class="nth-day">17</div>
+                    <div class="nth-day">18</div>
+                    <div class="nth-day">19</div>
+                    <div class="nth-day">20</div>
+                    <div class="nth-day row">21</div>
+                    <div class="nth-day">22</div>
+                    <div class="nth-day">23</div>
+                    <div class="nth-day">24</div>
+                    <div class="nth-day">25</div>
+                    <div class="nth-day">26</div>
+                    <div class="nth-day">27</div>
+                    <div class="nth-day row">28</div>
+                    <div class="nth-day column">29</div>
+                    <div class="nth-day column">30</div>
+                    <div class="nth-day column">31</div>
+                    <div class="nth-day column">32</div>
+                    <div class="nth-day column">33</div>
+                    <div class="nth-day column">34</div>
+                    <div class="nth-day column row">35</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
