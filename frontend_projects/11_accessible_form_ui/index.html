@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessible Form UI</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-size: 18px;
+    }
+    body{
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1em;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    form.form-container{
+        padding: 2em;
+        border: 1px solid;
+        border-radius: 1em;
+        height: fit-content;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 55% 45%;
+        column-gap: 1em;
+    }
+    form.form-container input{
+        padding: 0.2em 0.5em;
+        width: 100%;
+        border: 1px solid;
+        border-radius: 0.5em;
+        line-height: 1.7;
+    }
+    form.form-container input:focus-visible, .input-wrapper .btn-update-profile:focus-visible{
+        outline: 2px solid rgb(0, 110, 255);
+        border:  1px solid transparent;
+    }
+    form.form-container .input-wrapper{
+        padding-right: 1.5em;
+        display: flex;
+        flex-direction: column;
+        row-gap: 1em;
+        justify-content: space-between;
+    }
+    .input-wrapper .name-email, .input-wrapper .password{
+        display: flex;
+        flex-direction: column;
+        row-gap: 0.7em;
+    }
+    .input-wrapper .input-group{
+        display: flex;
+        flex-direction: column;
+        row-gap: 0.2em;
+    }
+    .form-container .input-password-wrapper{
+        position: relative;
+        width: 100%;
+    }
+    .input-password-wrapper .btn-password{
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0 0.5em;
+        background-color: inherit;
+        border: none;
+        cursor: pointer;
+    }
+    .input-password-wrapper .btn-password svg{
+        width: 1.2em;
+        height: 1.2em;
+    }
+    .input-password-wrapper .btn-password:hover svg{
+        color: rgb(0, 81, 255);
+    }
+    .input-wrapper .btn-update-profile{
+        background-color: black;
+        color: white;
+        padding: 0.7em 2em;
+        border: 1px solid;
+        border-radius: 0.5em;
+        cursor: pointer;
+    }
+    .input-password-wrapper .btn-password:focus-visible{
+        outline: none;
+        color: rgb(0, 81, 255);
+    }
+    .input-wrapper .btn-update-profile:active{
+        transform: scale(0.98);
+    }
+    form.form-container .progress-wrapper{
+        display: flex;
+        flex-direction: column;
+        row-gap: 1em;
+    }
+    .progress-wrapper .progress-percentage{
+        display: flex;
+        flex-direction: column;
+        row-gap: 1em;
+        align-items: center;
+    }
+    .progress-wrapper .progress-percentage .percentage-circle{
+        border: 3px solid gray;
+        border-radius: 50%;
+        background-color: white;
+        width: 110px;
+        height: 110px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-left: 3px solid;
+        border-bottom: 3px solid;
+    }
+    .percentage-circle .percentage{
+        font-size: 1.5em;
+    }
+    .progress-wrapper .progress-list{
+        background-color: rgb(229,229,229);
+        padding: 1em 1em 1em 1.5em;
+        border-radius: 1.2em;
+        height: 100%;
+    }
+    .progress-wrapper .progress-list .list{
+        list-style: none;
+        font-size: 16px;
+    }
+    .progress-wrapper .progress-list .lists{
+        display: flex;
+        flex-direction: column;
+        row-gap: 0.5em;
+    }
+    .progress-wrapper .progress-list .list.checked{
+        color: rgb(171,171,172);
+        position: relative;
+        text-decoration: line-through;
+    }
+    .input-group span.error-message{
+        color: red;
+        font-size: 16px;
+        /* display: none; */
+    }
+    .input-group input[aria-invalid="true"]{
+        outline: 2px solid red;
+        border:  1px solid transparent;
+    }
+    .input-group input[aria-invalid="true"]:focus-visible{
+        outline: 2px solid red;
+    }
+    .input-group:has(input[aria-invalid="false"]) span.error-message{
+        visibility: hidden;
+        height: 1px;
+    }
+    .input-group:has(input[aria-invalid="true"]) span.error-message{
+        visibility: visible;
+        color: red;
+    }
+</style>
+<body>
+    <form action="#" class="form-container" method="post">
+        <div class="input-wrapper">
+            <div class="name-email">
+                <div class="input-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" name="fullname" placeholder="What should we call you?" aria-errormessage="invalid-fullname" aria-invalid="false" aria-required="true" required>
+                    <span id="invalid-fullname" class="error-message">error message</span>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="example@gmail.com" aria-errormessage="invalid-email" aria-invalid="true" aria-required="false" aria-required="true" autocomplete="email" required>
+                    <span id="invalid-email" class="error-message">Email is already taken</span>
+                </div>
+            </div>
+            <div class="password">
+                <div class="input-group">
+                    <label for="password">Enter Password</label>
+                    <div class="input-password-wrapper">
+                        <input type="password" name="password" id="password" placeholder="xxxxxxxx" aria-errormessage="invalid-password" aria-invalid="false" aria-required="true" required>
+                        <button type="button" class="btn-password" aria-controls="password" aria-pressed="false" aria-label="Show password">
+                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                <path d="M0 0h24v24H0z" fill="none" />
+                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                                    <path d="M3 13c3.6-8 14.4-8 18 0" />
+                                    <path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6" />
+                                </g>
+                            </svg>
+                        </button>
+                    </div>
+                    <span id="invalid-password" class="error-message">error message</span>
+                </div>
+                <div class="input-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <div class="input-password-wrapper">
+                        <input type="password" name="confirm-password" id="confirm-password" placeholder="xxxxxxxx" aria-errormessage="invalid-confirm-password" aria-invalid="false" aria-required="true" required>
+                        <button type="button" class="btn-password" aria-controls="confirm-password" aria-pressed="false" aria-label="Show password">
+                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                <path d="M0 0h24v24H0z" fill="none" />
+                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                                    <path d="M3 13c3.6-8 14.4-8 18 0" />
+                                    <path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6" />
+                                </g>
+                            </svg>
+                        </button>
+                    </div>
+                    <span id="invalid-confirm-password" class="error-message">error message</span>
+                </div>
+            </div>
+            <button type="button" class="btn-update-profile" role="button" tabindex="0">Update Profile</button>
+        </div>
+        <div class="progress-wrapper">
+            <div class="progress-percentage">
+                <div class="percentage-circle">
+                    <div class="percentage">65%</div>
+                </div>
+                <span>Profile Completeness</span>
+            </div>
+            <div class="progress-list">
+                <ul class="lists">
+                    <li class="list checked">Create Account</li>
+                    <li class="list checked">Update Roadmap Progress</li>
+                    <li class="list checked">Setup Public Profile</li>
+                    <li class="list">Complete your first project</li>
+                    <li class="list">Invite your Friends</li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
