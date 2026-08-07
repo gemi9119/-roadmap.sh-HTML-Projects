@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Grid Layout</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(88, 88, 88);
+        height: 100%;
+    }
+    .grid-container{
+        background-color: #fff;
+        border-radius: 0.5em;
+        padding: 1em;
+        margin: 1em;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        grid-template-areas: 
+            "a c"
+            "a d"
+            "b d"
+            "e f"
+            "e .";
+        gap: 0.5em;
+    }
+    .grid-container img{
+        max-width: 150px;
+        height: 100%;
+    }
+    .grid-container img:nth-child(1) {
+        grid-area: a;
+    }
+    .grid-container img:nth-child(2){
+        grid-area: b;
+    }
+    .grid-container img:nth-child(3){
+        grid-area: c;
+    }
+    .grid-container img:nth-child(4){
+        grid-area: d;
+    }
+    .grid-container img:nth-child(5){
+        grid-area: e;
+    }
+    .grid-container img:nth-child(6){
+        grid-area: f;
+    }
+    @media screen and (min-width: 750px) {
+       .grid-container{
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-areas: 
+            "a c e"
+            "a d e"
+            "b d f";
+       };
+    }
+</style>
+<body>
+    <div class="grid-container">
+        <img src="assets/jasper-gribble-TTExgxV06KA-unsplash.jpg" alt="A foggy beach with a large rock formation in the foreground">
+        <img src="assets/pawel-czerwinski-Wuu6H3mI7UA-unsplash.jpg" alt="A living room with a white couch and a round window">
+        <img src="assets/a-table-topped-with-plates-and-bowls-of-food.jpg" alt="A table topped with plates and bowls of food">
+        <img src="assets/bernhard-uTd-kylh7bE-unsplash.jpg" alt="A building with a red door and a tree in front of it">
+        <img src="assets/florian-schmid-f1PzRPbqt0M-unsplash.jpg" alt="A row of white apartment buildings next to a street">
+        <img src="assets/a-view-of-a-beach-from-the-top-of-a-hill.jpg" alt="A view of a beach from the top of a hill">
+    </div>
+</body>
+</html>
