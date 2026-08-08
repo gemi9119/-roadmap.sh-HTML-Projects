@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Cards</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .material-symbols--check-circle-outline-rounded {
+        display: inline-block;
+        width: 1.1em;
+        height: 1.1em;
+        --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='m10.6 13.8l-2.15-2.15q-.275-.275-.7-.275t-.7.275t-.275.7t.275.7L9.9 15.9q.3.3.7.3t.7-.3l5.65-5.65q.275-.275.275-.7t-.275-.7t-.7-.275t-.7.275zM12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12t-2.325-5.675T12 4T6.325 6.325T4 12t2.325 5.675T12 20m0-8'/%3E%3C/svg%3E");
+        background-color: currentColor;
+        -webkit-mask-image: var(--svg);
+        mask-image: var(--svg);
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-size: 100% 100%;
+        mask-size: 100% 100%;
+    }
+    #most-popular{
+        background-color: rgb(250, 70, 46);
+        color: white;
+    }
+    .color-pro{
+        color: rgb(250, 70, 46);
+    }
+    .badge-popular{
+        background-color: rgb(250, 70, 46);
+        color: white;
+        padding: 0.3em 0.8em;
+        border: 2px solid black;
+        border-radius: 4px;
+        font-size: 0.9em;
+
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+
+    .pricing-cards-container{
+        padding: 1em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1em;
+        width: 100%;
+    }
+    .pricing-card{
+        display: flex;
+        flex-direction: column;
+        gap: 1.5em;
+        /* justify-content: space-between; */
+        align-items: center;
+
+        padding: 1em 1.5em;
+        border: 2px solid;
+        border-radius: 1em;
+        width: 100%;
+        height: 100%;
+    }
+    .pricing-card .plan{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        row-gap: 0.2em;
+        
+        padding-bottom: 1em;
+        border-bottom: 2px solid;
+    }
+    .pricing-card .plan .plan-name{
+        font-size: 1.5em;
+    }
+    .pricing-card .plan .price b{
+        font-size: 3em;
+    }
+    .pricing-card .plan .short-tagline{
+        max-width: 190px;
+    }
+    .pricing-card .lists{
+        width: 100%;
+    }
+    .pricing-card .lists ul{
+        list-style: none;
+        padding-left: 0.2em;
+    }
+    .pricing-card .lists ul li.list{
+        display: flex;
+        align-items: center;
+        line-height: 1.8;
+        column-gap: 0.5em;
+    }
+    .pricing-card button.btn-plan{
+        width: 100%;
+        font-size: 1em;
+        border: 2px solid black;
+        border-radius: 6px;
+        padding: 0.5em 0;
+        background-color: #fff;
+        cursor: pointer;
+        transition: all 0.1s ease-in-out;
+    }.pricing-card button.btn-plan:hover{
+        box-shadow: 3px 5px 5px rgb(184, 183, 183);
+    }
+    .pricing-card button#most-popular:hover{
+        background-color: rgb(250, 70, 46, 90%);
+    }
+    .pricing-card button.btn-plan:active{
+        transform: scale(0.98);
+    }
+    .pricing-card.selected{
+        width: 110%;
+        padding: 2em 1.5em;
+        box-shadow: 10px 10px 1px rgb(184, 183, 183, 50%);
+
+        position: relative;
+    }
+</style>
+<body>
+    <section>
+        <div class="pricing-cards-container">
+            <div class="pricing-card">
+                <div class="plan">
+                    <div class="plan-name"><b>Basic</b></div>
+                    <div class="price"><b>$9</b> /mo</div>
+                    <div class="short-tagline">Essential features to get started.</div>
+                </div>
+                <div class="lists">
+                    <ul>
+                        <li class="list"><span class="material-symbols--check-circle-outline-rounded"></span><span>1 user</span></li>
+                        <li class="list"><span class="material-symbols--check-circle-outline-rounded"></span><span>5 projects</span></li>
+                        <li class="list"><span class="material-symbols--check-circle-outline-rounded"></span><span>10 GB storage</span></li>
+                        <li class="list"><span class="material-symbols--check-circle-outline-rounded"></span><span>Email support</span></li>
+                        <li class="list"><span class="material-symbols--check-circle-outline-rounded"></span><span>Basic reports</span></li>
+                    </ul>
+                </div>
+                <button class="btn-plan">Choose Basic</button>
+            </div>
+            <div class="pricing-card selected">
+                <div class="badge-popular">Most popular</div>
+                <div class="plan">
+                    <div class="plan-name"><b>Pro</b></div>
+                    <div class="price"><b class="color-pro">$19</b> /mo</div>
+                    <div class="short-tagline">Advanced tools for growing teams.</div>
+                </div>
+                <div class="lists">
+                    <ul>
+                        <li class="list"><span class="material-symbols--check-circle-outline-rounded"></span><span>5 user</span></li>
+                        <li class="list"><span class="material-symbols--check-circle-outline-rounded"></span><span>50 projects</span></li>
+                        <li class="list"><span class="material-symbols--check-circle-outline-rounded"></span><span>100 GB storage</span></li>
+                        <li class="list"><span class="material-symbols--check-circle-outline-rounded"></span><span>Priority support</span></li>
+                        <li class="list"><span class="material-symbols--check-circle-outline-rounded"></span><span>Advanced reports</span></li>
+                    </ul>
+                </div>
+                <button class="btn-plan" id="most-popular">Choose Pro</button>
+            </div>
+            <div class="pricing-card">
+                <div class="plan">
+                    <div class="plan-name"><b>Business</b></div>
+                    <div class="price"><b>$49</b> /mo</div>
+                    <div class="short-tagline">Complete solution for large organizations.</div>
+                </div>
+                <div class="lists">
+                    <ul>
+                        <li class="list"><span class="material-symbols--check-circle-outline-rounded"></span><span>Unlimited user</span></li>
+                        <li class="list"><span class="material-symbols--check-circle-outline-rounded"></span><span>Unlimited projects</span></li>
+                        <li class="list"><span class="material-symbols--check-circle-outline-rounded"></span><span>1 TB storage</span></li>
+                        <li class="list"><span class="material-symbols--check-circle-outline-rounded"></span><span>24/7 support</span></li>
+                        <li class="list"><span class="material-symbols--check-circle-outline-rounded"></span><span>Custom reports</span></li>
+                    </ul>
+                </div>
+                <button class="btn-plan">Choose Business</button>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
