@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Switcher with CSS Variables</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    :root{
+        --color-bg-card: #fff;
+        --color-bg-btn: rgb(44,97,226);
+        --color-border: rgb(201, 202, 204);
+        --color-text-main: #fff;
+        --color-text-muted: #000;
+        --color-text-text: rgb(128, 132, 138);
+        --color-accent: #000;
+    }
+    :root:has(input[type="radio"]#theme-dark:checked){
+        --color-bg-card: rgb(29,36,44);
+        --color-bg-btn: rgb(44,97,226);
+        --color-border: rgb(201, 202, 204);
+        --color-text-main: #fff;
+        --color-text-muted: #fff;
+        --color-text-text: rgb(211, 213, 216);
+        --color-accent: #fff;
+    }
+    :root:has(input[type="radio"]#theme-custom:checked){
+        --color-bg-card: rgb(254,252,244);
+        --color-bg-btn: rgb(44,140,70);
+        --color-border: rgb(214, 214, 157);
+        --color-text-main: #fff;
+        --color-text-muted: #000;
+        --color-text-text: rgb(24, 77, 38);
+        --color-accent: #115fee;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .card{
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+        padding: 2em 1.5em 2.5em 1.5em;
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        background-color: var(--color-bg-card);
+    }
+    .card .card-body{
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        margin-top: 1.5em;
+    }
+    .sr-only{
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+    }
+    .card .theme-switcher{
+        display: flex;
+        width: 100%;
+        border: none;
+    }
+    .card .theme-switcher label{
+        color: var(--color-text-muted);
+        width: 100px;
+        height: 40px;
+        text-align: center;
+        align-content: center;
+    }
+    .card .theme-switcher input[type="radio"]:focus-visible + label{
+        outline: 2px solid var(--color-accent);
+        outline-offset: 2px;
+    }
+    .card .theme-switcher input[type="radio"]{
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    .card .card-body .card-title{
+        color: var(--color-text-muted);
+    }
+    .card .card-body .card-text{
+        color: var(--color-text-text);
+    }
+    .card .btn-primary{
+        width: fit-content;
+        padding: 1em 1.5em;
+        background-color: var(--color-bg-btn);
+        border: 1px solid var(--color-bg-btn);
+        border-radius: 6px;
+        color: var(--color-text-main);
+        font-weight: 500;
+    }
+    .card .btn-primary:focus-visible{
+        outline: 2px solid var(--color-accent);
+        outline-offset: 2px;
+    }
+    .card .theme-switcher input[type="radio"]:checked + label{
+        background-color: var(--color-bg-btn);
+        color: var(--color-text-main);
+        border: inherit solid var(--color-bg-btn);
+    }
+    .card .theme-switcher label.btn-left{
+        border: 1px solid var(--color-border);
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+    }
+    .card .theme-switcher label.btn-center{
+        border-top: 1px solid var(--color-border);
+        border-bottom: 1px solid var(--color-border);
+    }
+    .card .theme-switcher label.btn-right{
+        border: 1px solid var(--color-border);
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+    }
+</style>
+<body>
+    <main class="card">
+        <fieldset class="theme-switcher">
+            <legend class="sr-only">Choose a theme</legend>
+
+            <input type="radio" name="theme" id="theme-light" value="light" checked>
+            <label for="theme-light" class="btn-left">Light</label>
+
+            <input type="radio" name="theme" id="theme-dark" value="dark">
+            <label for="theme-dark" class="btn-center">Dark</label>
+
+            <input type="radio" name="theme" id="theme-custom" value="custom">
+            <label for="theme-custom" class="btn-right">Custom</label>
+        </fieldset>
+        <div class="card-body">
+            <h1 class="card-title">Hello, World!</h1>
+            <p class="card-text">This is simple card that changes <br>theme with CSS variables.</p>
+            <button class="btn-primary">Primary Button</button>
+        </div>
+    </main>
+</body>
+</html>
