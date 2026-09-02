@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabs</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .wrapper{
+        width: fit-content;
+        border: 2px solid;
+        padding: 1em 1.5em 2em 1.5em;
+        border-radius: 1em;
+    }
+    .wrapper .container{
+        max-width: 550px;
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+    }
+    .container .tabs{
+        display: flex;
+        gap: 1em;
+    }
+    .tabs .tab{
+        padding: 0 0.5em 0.5em 0.5em;
+
+        border: 2px transparent;
+        cursor: pointer;
+        color: gray;
+    }
+    .tab.active{
+        color: black;
+        border-bottom: 2px solid;
+    }
+    .container .content{
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+    }
+    .content .box-content{
+        width: 100%;
+        height: 120px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        background-color: black;
+        color: white;
+        text-align: center;
+        font-size: 1.2rem;
+        border-radius: 0.5em;
+    }
+    .box-content .tab-content{
+        display: none;
+    }
+    .box-content .tab-content.active{
+        display: block;
+    }
+</style>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="tabs">
+                <div class="tab active" data-tab="1">First Tab</div>
+                <div class="tab" data-tab="2">Second Tab</div>
+                <div class="tab" data-tab="3">Third Tab</div>
+                <div class="tab" data-tab="4">Fourth Tab</div>
+            </div>
+            <div class="content">
+                <p>Clicking each tab should hide the content of the other tab and show the content of clicked tab. By default, enable the first tab.</p>
+                <div class="box-content">
+                    <p class="tab-content active" id="tab-content-1">First Tab content </p>
+                    <p class="tab-content" id="tab-content-2">Second Tab content</p>
+                    <p class="tab-content" id="tab-content-3">Third Tab content</p>
+                    <p class="tab-content" id="tab-content-4">Fourth Tab content</p>
+                </div>
+                <p>Add some dummy content or just add a simple text showing the tab</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    const tabButtons = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const targetTabId = button.dataset.tab;
+
+            tabButtons.forEach((btn) => btn.classList.remove('active'));
+            tabContents.forEach((content) => content.classList.remove('active'));
+
+            button.classList.add('active');
+
+            const targetContent = document.getElementById(`tab-content-${targetTabId}`);
+
+            if(targetContent){
+                targetContent.classList.add('active');
+            }
+        });
+    })
+</script>

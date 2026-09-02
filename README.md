@@ -31,3 +31,4 @@ https://roadmap.sh/projects/js-quiz-score-calculator
 https://roadmap.sh/projects/js-json-response-normalizer
 https://roadmap.sh/projects/js-password-rule-checker
 https://roadmap.sh/projects/js-order-status-helper
+https://roadmap.sh/projects/simple-tabs
