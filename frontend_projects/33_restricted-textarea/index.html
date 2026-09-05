@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restricted Textarea</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    section{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .wrapper{
+        width: 100%;
+    }
+    .wrapper .container {
+        position: relative;
+    }
+    textarea{
+        resize: none;
+        padding: 1em;
+        
+        border: 2px solid;
+        border-radius: 1em;
+    }
+    textarea:focus-visible{
+        /* border-radius: 0.9em; */
+    }
+    .text-limit{
+        position: absolute;
+        bottom: 1em;
+        right: 1em;
+        font-size: 0.7em;
+    }
+</style>
+<body>
+    <section>
+        <h3>Write your Message</h3>
+        <div class="wrapper">
+            <div class="container">
+                <textarea name="message" id="input-message" maxlength="250" rows="6" cols="50" placeholder="Start typing...">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus, mollitia officia itaque sint molestiae architecto, consectetur deleniti quia recusandae sequi provident veniam magnam repellendus sit!กกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกก</textarea>
+                <div class="text-limit">
+                    <span id="total-input"></span>
+                    <span>/</span>
+                    <span id="total-limit">250</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+<script>
+    const textarea = document.getElementById('input-message');
+    const charCount = document.getElementById('total-input');
+    
+    charCount.textContent = textarea.value.length;
+
+    textarea.addEventListener('input', () => {
+        charCount.textContent = textarea.value.length;
+
+        if(textarea.value.length >= 250){
+            textarea.style.color = 'red';
+            textarea.style.outline = 'red';
+        }else{
+            textarea.style.color = 'initial';
+            textarea.style.outlineColor = 'initial';
+        }  
+    })
+</script>
