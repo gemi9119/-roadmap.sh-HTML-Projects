@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Dropdown</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .dropdown-container{
+        position: relative;
+        min-width: 180px;
+    }
+    .dropdown{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        border: 2px solid;
+        border-radius: 10px;
+        padding: 0.5rem;
+        font-size: 18px;
+        cursor: pointer;
+        background-color: white;
+        transition: background 0.2s ease;
+        user-select: none;
+    }
+    .dropdown:hover,.dropdown-item:hover{
+        background-color: rgb(241, 241, 241);
+    }
+    .dropdown.active .chevron-up-icon{
+        transform: rotate(180deg);
+    }
+    .chevron-up-icon{
+        display: flex;
+        align-items: center;
+        transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .dropdown-lists{
+        display: flex;
+        flex-direction: column;
+        border: 2px solid;
+        border-radius: 12px;
+        width: 100%;
+        overflow: hidden;
+    }
+    .dropdown-item{
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        padding: 0.65rem;
+        padding-left: 1.2rem;
+        width: 100%;
+        cursor: pointer;
+    }
+    .dropdown-item:not(:last-child){
+        border-bottom: 2px solid;
+    }
+    .hidden{
+        display: none;
+    }
+    .dropdown-list-container{
+        position: absolute;
+        top: calc(18px + 1rem + 0.8rem);
+        width: 100%;
+
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .dropdown-list-container.is-open{
+        grid-template-rows: 1fr;
+    }
+    .dropdown-inner{
+        overflow: hidden;
+    }
+</style>
+<body>
+    <main class="dropdown-container">
+        <div class="dropdown" id="dropdown">
+            <div id="dropdown-value">Select an Item</div>
+            <span class="chevron-up-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
+                    <path d="M0 0h24v24H0z" fill="none" />
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 14l6-6l6 6" />
+                </svg>
+            </span>
+        </div>
+        <div class="dropdown-list-container" id="dropdown-list" aria-expanded="false">
+            <div class="dropdown-inner">
+                <div class="dropdown-lists">
+                    <div class="dropdown-item" data-content="First Item">
+                        First Item
+                        <span class="check-icon hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" width=1rem height="1rem" viewBox="0 0 24 24">
+                                <path d="M0 0h24v24H0z" fill="none" />
+                                <path fill="currentColor" fill-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1m4.768 9.14a1 1 0 1 0-1.536-1.28l-4.3 5.159l-2.225-2.226a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.475-.067z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="dropdown-item" data-content="Second Item">
+                        Second Item
+                        <span class="check-icon hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" width=1rem height="1rem" viewBox="0 0 24 24">
+                                <path d="M0 0h24v24H0z" fill="none" />
+                                <path fill="currentColor" fill-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1m4.768 9.14a1 1 0 1 0-1.536-1.28l-4.3 5.159l-2.225-2.226a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.475-.067z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="dropdown-item" data-content="Third Item">
+                        Third Item
+                        <span class="check-icon hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" width=1rem height="1rem" viewBox="0 0 24 24">
+                                <path d="M0 0h24v24H0z" fill="none" />
+                                <path fill="currentColor" fill-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1m4.768 9.14a1 1 0 1 0-1.536-1.28l-4.3 5.159l-2.225-2.226a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.475-.067z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="dropdown-item" data-content="Fourth Item">
+                        Fourth Item
+                        <span class="check-icon hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" width=1rem height="1rem" viewBox="0 0 24 24">
+                                <path d="M0 0h24v24H0z" fill="none" />
+                                <path fill="currentColor" fill-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1m4.768 9.14a1 1 0 1 0-1.536-1.28l-4.3 5.159l-2.225-2.226a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.475-.067z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="dropdown-item" data-content="Fifth Item">
+                        Fifth Item
+                        <span class="check-icon hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" width=1rem height="1rem" viewBox="0 0 24 24">
+                                <path d="M0 0h24v24H0z" fill="none" />
+                                <path fill="currentColor" fill-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1m4.768 9.14a1 1 0 1 0-1.536-1.28l-4.3 5.159l-2.225-2.226a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.475-.067z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<script>
+    const dropdown = document.getElementById('dropdown');
+    const dropdownList = document.getElementById('dropdown-list');
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
+    const dropdownText = document.getElementById('dropdown-value');
+    let selectedItem = '';
+
+    dropdown.addEventListener('click', () => {
+        const isOpen = dropdown.classList.contains('active');
+
+        dropdown.classList.remove('active')
+        dropdownList.classList.remove('is-open');
+
+        if(!isOpen){
+            dropdown.classList.add('active');
+            dropdownList.classList.add('is-open');
+            dropdownList.ariaExpanded = true;
+        }
+
+        dropdownItems.forEach(item => {
+            item.firstElementChild.classList.add('hidden');
+
+            if(selectedItem === item.dataset.content){
+                item.firstElementChild.classList.remove('hidden');
+            }
+        })
+    })
+
+
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', () => {
+            selectedItem = item.dataset.content;
+            dropdownText.textContent = selectedItem;
+
+            dropdownItems.forEach(item => { item.firstElementChild.classList.add('hidden')});
+
+            item.firstElementChild.classList.remove('hidden')
+            closeDropdown();
+            console.dir(item);
+            
+        })
+    })
+
+function closeDropdown(){
+    setTimeout(() => {
+        dropdown.classList.remove('active')
+        dropdownList.classList.remove('is-open');
+        dropdownList.ariaExpanded = false;
+    },200)
+}
+</script>
+</html>
