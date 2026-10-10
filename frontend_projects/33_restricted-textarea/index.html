@@ -67,11 +67,15 @@
     const textarea = document.getElementById('input-message');
     const charCount = document.getElementById('total-input');
     
+    document.addEventListener('DOMContentLoaded', charCheck);
     charCount.textContent = textarea.value.length;
 
     textarea.addEventListener('input', () => {
         charCount.textContent = textarea.value.length;
+        charCheck();
+    })
 
+    function charCheck() {
         if(textarea.value.length >= 250){
             textarea.style.color = 'red';
             textarea.style.outline = 'red';
@@ -79,5 +83,5 @@
             textarea.style.color = 'initial';
             textarea.style.outlineColor = 'initial';
         }  
-    })
+    }
 </script>
